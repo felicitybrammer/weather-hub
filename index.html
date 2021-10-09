@@ -4,9 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>WEATHER HUB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-    
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <main>
+
+        <!-- Left-side search box and favourites list -->
+        <div class="side-container">
+            <div class="search-container col-3">
+                <label>Search for a City:</label>
+                <input type="text" placeholder="City Name.." />
+                <button type="submit">Search</button>
+            </div>
+            <div class="favourites-container col-3"></div>
+        </div>
+
+
+        <div class="weather-container col-9">
+            <!-- Current weather section -->
+            <div class="current-container"></div>
+            <!-- Forecast section -->
+            <div class="forecast-container">
+                <h2>5-day Forecast:</h2>
+            </div>
+        </div>
+
+
+
+    </main>
+    <footer></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+    <script src="assets/app.js"></script>
 </body>
 </html>
