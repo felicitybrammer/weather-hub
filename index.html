@@ -15,21 +15,23 @@
     <main>
 
         <!-- Left-side search box and favourites list -->
-        <div class="side-container">
-            <div class="search-container col-3">
-                <label>Search for a City:</label>
-                <input type="text" placeholder="City Name.." />
-                <button type="submit">Search</button>
+        <div id="side-container" class="">
+            <div id="search-container" class=" col-3">
+                <form id="search-form">
+                    <label for=search-input class="">Search for a City:</label>
+                    <input type="text" id="search-input" placeholder="City Name.." />
+                    <button class="btn btn-primary" id="search-btn" type="submit">Search</button>
+                </form>    
             </div>
-            <div class="favourites-container col-3"></div>
+            <div id="favourites-container" class=" col-3"></div>
         </div>
 
 
-        <div class="weather-container col-9">
+        <div id="weather-container" class="col-9">
             <!-- Current weather section -->
-            <div class="current-container"></div>
+            <div id="current-container" class="col-9"></div>
             <!-- Forecast section -->
-            <div class="forecast-container">
+            <div id="forecast-container" class="">
                 <h2>5-day Forecast:</h2>
             </div>
         </div>
