@@ -5,7 +5,7 @@ let searchBtnEl = document.getElementById('search-btn');
 const getCoords = location => {
     const apiKey = '556575be6b514b546ca011efc407200d';
     //get latitude and longitude data for city in search field
-    let latLongUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}`
+    let latLongUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}`;
 
     fetch(latLongUrl)
     .then (response => {
@@ -69,9 +69,9 @@ const getWeather = (lat, long) => {
 //event listener on search button
 searchBtnEl.addEventListener('click', event => {
     event.preventDefault();
-    //console.log('button clicked!');
+    console.log('button clicked!');
     //get value from form input
-    location = document.getElementById('search-input').value;
+    let location = document.getElementById('search-input').value;
     console.log(location);
     // use location to get weather data (getCoords(city))
     // function to get data
