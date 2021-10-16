@@ -9,29 +9,31 @@
     <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-    <header>
+    <header class="bg-dark text-white">
         <h1>Weather Dashboard</h1>
     </header>
     <main>
 
         <!-- Left-side search box and favourites list -->
-        <div id="side-container" class="">
-            <div id="search-container" class=" col-3">
-                <form id="search-form">
-                    <label for=search-input class="">Search for a City:</label>
-                    <input type="text" id="search-input" placeholder="City Name.." />
-                    <button class="btn btn-primary" id="search-btn" type="submit">Search</button>
-                </form>    
+        <div id="side-container" class="container-fluid">
+            <div class="row">
+                <div id="search-container" class="col-4">
+                    <form id="search-form" class="">
+                        <label for="search-input" class="font-weight-bold">Search for a City:</label>
+                        <input type="text" class="form-control input-group input-group-lg border border-primary" id="search-input" placeholder="City Name.." />
+                        <button class="btn btn-primary" id="search-btn" type="submit">Search</button>
+                    </form>    
+                </div>
+                <div id="favourites-container" class=" col-3"></div>
             </div>
-            <div id="favourites-container" class=" col-3"></div>
-        </div>
+    </div>
 
 
         <div id="weather-container" class="col-9">
             <!-- Current weather section -->
             <div id="current-container" class="col-9"></div>
             <!-- Forecast section -->
-            <div id="forecast-container" class="">
+            <div id="forecast-container" class="col-9">
                 <h2>5-day Forecast:</h2>
             </div>
         </div>
