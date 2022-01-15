@@ -5,44 +5,134 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEATHER HUB</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/styles.css" />
 </head>
+
 <body>
-    <header class="bg-dark text-white">
-        <h1>Weather Dashboard</h1>
+    <!-- Header -->
+    <header class="navbar top bg-dark text-white">
+        <div class="mt-2 mr-2">
+            <h1>Weather Dashboard</h1>
+        </div>   
     </header>
-    <main>
 
+
+
+    <main id="page-content" class="container-fluid">
+      <div class="row">
         <!-- Left-side search box and favourites list -->
-        <div id="side-container" class="container-fluid">
-            <div class="row">
-                <div id="search-container" class="col-4">
-                    <form id="search-form" class="">
-                        <label for="search-input" class="font-weight-bold">Search for a City:</label>
+        <div id="side-container" class="col-4 mt-2 mr-2 container">
+                <div id="search-container" class="d-flex flex-column text-light rounded search-container p-5">
+                    <!-- New Search Form -->
+                    <form id="search-form" class="form-group border-bottom border-white pb-4">
+                        <label for="search-input" class="h2 font-weight-bold">Search for a City:</label>
                         <input type="text" class="form-control input-group input-group-lg border border-primary" id="search-input" placeholder="City Name.." />
-                        <button class="btn btn-primary" id="search-btn" type="submit">Search</button>
-                    </form>    
+                        <button class="btn btn-primary btn-block" id="search-btn" type="submit">Search</button>
+                    </form>  
+
+                   <!-- Search History --> 
+                    <h3>Recent Searches</h3>
+                    <div id="recents" class="d-flex flex-column"></div>  
                 </div>
-                <div id="favourites-container" class=" col-3"></div>
-            </div>
-    </div>
-
-
-        <div id="weather-container" class="col-9">
-            <!-- Current weather section -->
-            <div id="current-container" class="col-9"></div>
-            <!-- Forecast section -->
-            <div id="forecast-container" class="col-9">
-                <h2>5-day Forecast:</h2>
-            </div>
         </div>
+       
+
+        <div id="weather-container" class="col-8 mt-2 d-flex flex-column">
+            <!-- Current weather section -->
+            <div id="current-container" class="col-12 border border-dark rounded p-4">
+                <h1 id="city-heading">
+                    <span id="city-name"></span>
+                    <span id="date-today" class="fs-5"></span>
+                    <!-- <span><img id="current-icon" class='weather-icon' src=''></span> -->
+                </h1>
+                <div><img src="#" id="current-icon"/></div> 
+                <!-- description? -->
+                <div>Temp: <span id="current-temp"></span>&deg;C</div>
+                <div>Wind: <span id="current-wind"></span>km/h</div>
+                <div>Humidity: <span id="current-hum"></span>%</div>
+                <div>UV Index: <span id="uv-index"></span></div>
+            </div>
+
+            <!-- Forecast section -->
+            <div id="forecast-container" class="card-deck col-12 mt-4 ">
+                <h2>5-day Forecast:</h2>
+
+
+                
+<!-- 
+                        <div class="card border-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Date</div>
+                            <div class="card-body text-dark">
+                              <h5 class="card-title">icon</h5>
+                              
+                              <div>Temp: <span class="forecast-temp"></span>&deg;C</div>
+                              <div>Wind: <span class="forecast-wind"></span>km/h</div>
+                              <div>Humidity: <span class="forecast-hum"></span>%</div> 
+                            </div>
+                        </div>
 
 
 
+                        <div class="card border-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Date</div>
+                            <div class="card-body text-dark">
+                              <h5 class="card-title">icon</h5>
+                              <div>Temp: <span class="forecast-temp"></span>&deg;C</div>
+                              <div>Wind: <span class="forecast-wind"></span>km/h</div>
+                              <div>Humidity: <span id="forecast-hum"></span>%</div>
+                            </div>
+                        </div>
+                        <div class="card border-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Date</div>
+                            <div class="card-body text-dark">
+                              <h5 class="card-title">icon</h5>
+                              <div>Temp: <span class="forecast-temp"></span>&deg;C</div>
+                              <div>Wind: <span class="forecast-wind"></span>km/h</div>
+                              <div>Humidity: <span class="forecast-hum"></span>%</div>
+                            </div>
+                        </div>
+                        <div class="card border-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Date</div>
+                            <div class="card-body text-dark">
+                              <h5 class="card-title">icon</h5>
+                              <div>Temp: <span class="forecast-temp"></span>&deg;C</div>
+                              <div>Wind: <span class="forecast-wind"></span>km/h</div>
+                              <div>Humidity: <span class="forecast-hum"></span>%</div>
+                            </div>
+                        </div>
+                        <div class="card border-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Header</div>
+                            <div class="card-body text-dark">
+                              <h5 class="card-title">icon</h5>
+                              <div>Temp: <span class="forecast-temp"></span>&deg;C</div>
+                              <div>Wind: <span class="forecast-wind"></span>km/h</div>
+                              <div>Humidity: <span class="forecast-hum"></span>%</div>
+                            </div>
+                        </div>
+                     -->
+                
+            </div>
+        <!-- </div> -->
+
+
+      </div>      
     </main>
-    <footer></footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+    
+   
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/dayjs.min.js" 
+        integrity="sha512-bwD3VD/j6ypSSnyjuaURidZksoVx3L1RPvTkleC48SbHCZsemT3VKMD39KknPnH728LLXVMTisESIBOAb5/W0Q==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <script src="assets/app.js"></script>
 </body>
 </html>

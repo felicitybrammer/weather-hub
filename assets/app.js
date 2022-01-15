@@ -1,5 +1,8 @@
-let searchBtnEl = document.getElementById('search-btn');
-
+const searchBtnEl = document.getElementById('search-btn');
+const currentContainer = document.getElementById('current-container');
+const recentsContainer = document.getElementById('recents');
+const currentDate = dayjs().format('M-DD-YYYY');
+let searches = [];
 
 //get the latitude and longitude of the search value
 const getCoords = location => {
@@ -16,6 +19,8 @@ const getCoords = location => {
                 console.log(lat,long);
 
                 getWeather(lat,long);
+                
+                $('#city-name').text(location);
             })
         }    
     });  
@@ -48,7 +53,13 @@ const getWeather = (lat, long) => {
 
 
                 //Display Current Day Info
+                //date
                 
+                $('#current-icon').attr('src', currentIcon);
+                $('#current-temp').text(currentTemp);
+                $('#current-wind').text(currentWind);
+                $('#current-hum').text(currentHum);
+                $('#uv-index').text(uvIndex);
 
 
             })
@@ -69,19 +80,50 @@ const getWeather = (lat, long) => {
                 //console.log(data.list.length);
                 for (let i = 4; i < data.list.length; i+=8) {
                 
+                    //put in a nested for loop here? to get the dates right?
+
                 //icons url  http://openweathermap.org/img/wn/${icon}@2x.png
                 //icon data.list[i].weather[0].icon
+                let forecastContainer = document.getElementById('forecast-container');
+
                 let icon = data.list[i].weather[0].icon;
                 let forecastIcon = `http://openweathermap.org/img/wn/${icon}@2x.png`;
                 let forecastTemp = Math.round(data.list[i].main.temp);
-
-
                 let forecastHum = data.list[i].main.humidity; 
-                
                 let forecastWind = Math.round((data.list[i].wind.speed) * 3.6);
                 console.log(forecastTemp,forecastHum,forecastWind, forecastIcon);
+                
+                //display 5 day forecast
+                let forecastCard = $('<div></div>')
+                    .addClass('card border-dark mb-3 forecast')
+                    .attr('data-forecast-id', i);
+                let forecastDate = $('<h4></h4>')
+                    .addClass('card-header')
+                    .text(dayjs().add(i, 'day').format('M-DD-YYYY'));
+                let forecastImg = $("<img>")
+                    // .addClass('card-title')
+                    .attr('src', forecastIcon)
+                    .attr('alt', '');
+                let temp = $('<div></div>')
+                    .text('Temp: ' + forecastTemp + ' °C');
+                let wind = $('<div></div>')
+                    .text('Wind: ' + forecastWind + ' km/h');
+                let humidity = $('<div></div>')
+                    .text('Humidity: ' + forecastHum + ' %');
 
+                
+                $(forecastCard).append(forecastDate, forecastImg, temp, wind, humidity);
+                $(forecastContainer).append(forecastCard);
+                
 
+                //date
+                //icon
+                //temp
+                // $('.forecast-temp' + i).text(forecastTemp);
+                // //wind
+                // $('.forecast-wind1' + i).text(forecastWind);
+                // //humidity
+                // $('.forecast-hum1' + i).text(forecastHum);
 
                 }
             })
@@ -107,3 +149,57 @@ searchBtnEl.addEventListener('click', event => {
     //clear the form
    // document.getElementById('search-input') = '';
 });
+
+
+var saveSearch = function(searchTerm) {
+    searchHistory = JSON.parse(localStorage.getItem("searches"));
+    
+    if (searchHistory === null) {
+        var tempArr = [];
+        var recentSearch = {
+            city: searchTerm,
+        };
+        tempArr.push(recentSearch);
+    
+        localStorage.setItem('searchHistory', JSON.stringify(tempArr));
+    
+        loadSearchHistory();
+    } else {
+        var matching = searchHistory.find(({ city }) => city === searchTerm);
+        console.log(matching);
+
+        if (matching === undefined) {
+            var recentSearch = {
+                city: searchTerm,
+            };
+            searchHistory.push(recentSearch);
+        
+            localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+        
+            loadSearchHistory();
+        } else {
+            return;
+        }
+    }
+};
+
+var loadSearchHistory = function() {
+    var recentSearches = JSON.parse(localStorage.getItem('searches'));
+    console.log(recentSearches);
+
+    $(recentsContainer).empty();
+
+    if (recentSearches === null){
+        return;
+    } else {
+        for (j = 0; j < recentSearches.length; j ++) {
+            var recentSearchEl = $('<a></a>')
+            .text(recentSearches[j].city)
+            .addClass('rounded p-2 searchestext-white text-center mt-2');
+    
+            $(recentsContainer).append(recentSearchEl);
+        }
+    }
+};
+
+loadSearchHistory();
