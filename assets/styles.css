@@ -17,9 +17,9 @@
     height: 100vh;
 }
 
-.row {
+/* .row {
     flex-wrap: nowrap;
-}
+} */
 
 #current-container {
     max-height: 40vh;

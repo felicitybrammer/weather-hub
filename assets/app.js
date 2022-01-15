@@ -1,7 +1,7 @@
 const searchBtnEl = document.getElementById('search-btn');
 const currentContainer = document.getElementById('current-container');
 const recentsContainer = document.getElementById('recents');
-const currentDate = dayjs().format('M-DD-YYYY');
+const currentDate = dayjs().format('MMMM D');
 let searches = [];
 
 //get the latitude and longitude of the search value
@@ -39,7 +39,7 @@ const getWeather = (lat, long) => {
         if (response.ok) {
             response.json().then(data => {
 
-                //also get icon
+                
                 let cIcon = data.current.weather[0].icon;
                 let currentIcon = `http://openweathermap.org/img/wn/${cIcon}@2x.png`;
                 //display: round up add C units
@@ -52,9 +52,8 @@ const getWeather = (lat, long) => {
                 console.log(currentTemp,currentHum,uvIndex,currentWind, currentIcon);
 
 
-                //Display Current Day Info
-                //date
                 
+                $('#date-today').text(currentDate);
                 $('#current-icon').attr('src', currentIcon);
                 $('#current-temp').text(currentTemp);
                 $('#current-wind').text(currentWind);
@@ -67,7 +66,7 @@ const getWeather = (lat, long) => {
     });
 
     let city = document.getElementById('search-input').value;
-    localStorage.setItem('lastSearch', city); //works!
+    localStorage.setItem('searchHistory', city); //works!
     console.log(city);
 
     let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
@@ -78,12 +77,8 @@ const getWeather = (lat, long) => {
             response.json().then(data => {
                 //console.log(data.list);
                 //console.log(data.list.length);
-                for (let i = 4; i < data.list.length; i+=8) {
+                for (let i = 1; i < 7; i+=1) {
                 
-                    //put in a nested for loop here? to get the dates right?
-
-                //icons url  http://openweathermap.org/img/wn/${icon}@2x.png
-                //icon data.list[i].weather[0].icon
                 let forecastContainer = document.getElementById('forecast-container');
 
                 let icon = data.list[i].weather[0].icon;
@@ -99,7 +94,7 @@ const getWeather = (lat, long) => {
                     .attr('data-forecast-id', i);
                 let forecastDate = $('<h4></h4>')
                     .addClass('card-header')
-                    .text(dayjs().add(i, 'day').format('M-DD-YYYY'));
+                    .text(dayjs().add(i, 'day').format('MMMM D'));
                 let forecastImg = $("<img>")
                     // .addClass('card-title')
                     .attr('src', forecastIcon)
@@ -116,20 +111,65 @@ const getWeather = (lat, long) => {
                 $(forecastContainer).append(forecastCard);
                 
 
-                //date
-                //icon
-                //temp
-                // $('.forecast-temp' + i).text(forecastTemp);
-                // //wind
-                // $('.forecast-wind1' + i).text(forecastWind);
-                // //humidity
-                // $('.forecast-hum1' + i).text(forecastHum);
-
                 }
             })
         }
     });
 
+};
+
+
+
+
+const saveSearch = function(searchTerm) {
+    const history = JSON.parse(localStorage.getItem("searchHistory"));
+    
+    if (history === null) {
+        let tempArr = [];
+        let recentSearch = {
+            city: searchTerm,
+        };
+        tempArr.push(recentSearch);
+    
+        localStorage.setItem('searchHistory', JSON.stringify(tempArr));
+    
+        loadSearchHistory();
+    } else {
+        const matching = history.find(({ city }) => city === searchTerm);
+        console.log(matching);
+
+        if (matching === undefined) {
+            let recentSearch = {
+                city: searchTerm,
+            };
+            history.push(recentSearch);
+            console.log(history);
+            localStorage.setItem('searchHistory', JSON.stringify(history));
+        
+            loadSearchHistory();
+        } else {
+            return;
+        }
+    }
+};
+
+const loadSearchHistory = function() {
+    let recentSearches = JSON.parse(localStorage.getItem("searchHistory"));
+    console.log(recentSearches);
+
+    $(recentsContainer).empty();
+
+    if (recentSearches === null){
+        return;
+    } else {
+        for (let j = 0; j < recentSearches.length; j++) {
+            let recentSearchEl = $('<button></button>')
+            .text(recentSearches[j].city)
+            .addClass('btn btn-block rounded p-2 searches text-white text-center mt-2');
+    
+            $(recentsContainer).append(recentSearchEl);
+        }
+    }
 };
 
 //event listener on search button
@@ -146,60 +186,8 @@ searchBtnEl.addEventListener('click', event => {
     } else {
         getCoords(location);
     }
-    //clear the form
-   // document.getElementById('search-input') = '';
+   
+    saveSearch(location);
 });
-
-
-var saveSearch = function(searchTerm) {
-    searchHistory = JSON.parse(localStorage.getItem("searches"));
-    
-    if (searchHistory === null) {
-        var tempArr = [];
-        var recentSearch = {
-            city: searchTerm,
-        };
-        tempArr.push(recentSearch);
-    
-        localStorage.setItem('searchHistory', JSON.stringify(tempArr));
-    
-        loadSearchHistory();
-    } else {
-        var matching = searchHistory.find(({ city }) => city === searchTerm);
-        console.log(matching);
-
-        if (matching === undefined) {
-            var recentSearch = {
-                city: searchTerm,
-            };
-            searchHistory.push(recentSearch);
-        
-            localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-        
-            loadSearchHistory();
-        } else {
-            return;
-        }
-    }
-};
-
-var loadSearchHistory = function() {
-    var recentSearches = JSON.parse(localStorage.getItem('searches'));
-    console.log(recentSearches);
-
-    $(recentsContainer).empty();
-
-    if (recentSearches === null){
-        return;
-    } else {
-        for (j = 0; j < recentSearches.length; j ++) {
-            var recentSearchEl = $('<a></a>')
-            .text(recentSearches[j].city)
-            .addClass('rounded p-2 searchestext-white text-center mt-2');
-    
-            $(recentsContainer).append(recentSearchEl);
-        }
-    }
-};
 
 loadSearchHistory();
