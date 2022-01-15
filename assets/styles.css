@@ -1,0 +1,49 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.top {
+    height: 15%;
+    background-image: linear-gradient(25deg,#2F4D74, #1FB1D6);
+    width: 100%;
+    color: whitesmoke;
+}
+
+.search-container {
+    background-color: rgb(28, 57, 87);
+    height: 100vh;
+}
+
+/* .row {
+    flex-wrap: nowrap;
+} */
+
+#current-container {
+    max-height: 40vh;
+    background-image: linear-gradient(25deg,#2F4D74, #1FB1D6);
+    color: white;
+}
+#forecast-container {
+    max-height: 50vh;
+}
+#titleContainer img {
+    max-width: 5%;
+}
+
+.searchHistory {
+    background-color: #1FB1D6;
+    font-size: 18px;
+}
+
+
+.forecast {
+    background-image: linear-gradient(25deg,#2F4D74, #1FB1D6);
+    color: white;
+}
+
+/* .forecast img {
+    
+} */
