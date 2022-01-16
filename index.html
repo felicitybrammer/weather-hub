@@ -23,13 +23,13 @@
     <main id="page-content" class="container-fluid">
       <div class="row">
         <!-- Left-side search box and favourites list -->
-        <div id="side-container" class="col-4 mt-2 mr-2 container">
+        <div id="side-container" class="col-3 mt-2 mr-2 container">
                 <div id="search-container" class="d-flex flex-column text-light rounded search-container p-5">
                     <!-- New Search Form -->
                     <form id="search-form" class="form-group border-bottom border-white pb-4">
                         <label for="search-input" class="h2 font-weight-bold">Search for a City:</label>
                         <input type="text" class="form-control input-group input-group-lg border border-primary" id="search-input" placeholder="City Name.." />
-                        <button class="btn btn-primary btn-block" id="search-btn" type="submit">Search</button>
+                        <button class="btn btn-primary text-white btn-block" id="search-btn" type="submit">Search</button>
                     </form>  
 
                    <!-- Search History --> 
@@ -39,7 +39,7 @@
         </div>
        
 
-        <div id="weather-container" class="col-8 mt-2 d-flex flex-column">
+        <div id="weather-container" class="col-9 mt-2 d-flex flex-column">
             <!-- Current weather section -->
             <div id="current-container" class="col-12 border border-dark rounded p-4">
                 <h1 id="city-heading">
@@ -55,67 +55,12 @@
                 <div>UV Index: <span id="uv-index"></span></div>
             </div>
 
-            <!-- Forecast section -->
-            <div id="forecast-container" class="row mt-4 ">
-                <h2>5-day Forecast:</h2>
-                <div class="card-deck"></div>
-
-
-                
-<!-- 
-                        <div class="card border-dark mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Date</div>
-                            <div class="card-body text-dark">
-                              <h5 class="card-title">icon</h5>
-                              
-                              <div>Temp: <span class="forecast-temp"></span>&deg;C</div>
-                              <div>Wind: <span class="forecast-wind"></span>km/h</div>
-                              <div>Humidity: <span class="forecast-hum"></span>%</div> 
-                            </div>
-                        </div>
-
-
-
-                        <div class="card border-dark mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Date</div>
-                            <div class="card-body text-dark">
-                              <h5 class="card-title">icon</h5>
-                              <div>Temp: <span class="forecast-temp"></span>&deg;C</div>
-                              <div>Wind: <span class="forecast-wind"></span>km/h</div>
-                              <div>Humidity: <span id="forecast-hum"></span>%</div>
-                            </div>
-                        </div>
-                        <div class="card border-dark mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Date</div>
-                            <div class="card-body text-dark">
-                              <h5 class="card-title">icon</h5>
-                              <div>Temp: <span class="forecast-temp"></span>&deg;C</div>
-                              <div>Wind: <span class="forecast-wind"></span>km/h</div>
-                              <div>Humidity: <span class="forecast-hum"></span>%</div>
-                            </div>
-                        </div>
-                        <div class="card border-dark mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Date</div>
-                            <div class="card-body text-dark">
-                              <h5 class="card-title">icon</h5>
-                              <div>Temp: <span class="forecast-temp"></span>&deg;C</div>
-                              <div>Wind: <span class="forecast-wind"></span>km/h</div>
-                              <div>Humidity: <span class="forecast-hum"></span>%</div>
-                            </div>
-                        </div>
-                        <div class="card border-dark mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Header</div>
-                            <div class="card-body text-dark">
-                              <h5 class="card-title">icon</h5>
-                              <div>Temp: <span class="forecast-temp"></span>&deg;C</div>
-                              <div>Wind: <span class="forecast-wind"></span>km/h</div>
-                              <div>Humidity: <span class="forecast-hum"></span>%</div>
-                            </div>
-                        </div>
-                     -->
-                
+            <!-- Forecast section -->   
+            <div class="col-12 mt-4">
+                <h3 class="mt-2">5-day Forecast:</h3>
+                <div id="forecast-container" class="row justify-content-between mt-4"></div>
             </div>
-        <!-- </div> -->
+                
 
 
       </div>      

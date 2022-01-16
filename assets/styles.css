@@ -17,9 +17,11 @@
     height: 100vh;
 }
 
-/* .row {
-    flex-wrap: nowrap;
-} */
+.btn .button-block {
+    color: #1FB1D6
+}
+
+
 
 #current-container {
     max-height: 40vh;
@@ -44,6 +46,19 @@
     color: white;
 }
 
-/* .forecast img {
-    
-} */
+.bg-orange {
+    background-color: orange;
+}
+
+.bg-extremePurple {
+    background-color: purple;
+}
+.bg-green {
+    background-color:rgb(141, 196, 67);
+}
+.bg-red {
+    background-color:rgb(211, 72, 87);
+}
+.bg-yellow {
+    background-color: rgb(253, 216, 53);
+}
