@@ -188,7 +188,7 @@ const loadSearchHistory = function() {
 
             let recentSearchEl = $('<button></button>')
             .text(recentSearches[j].city)
-            .addClass('btn btn-block btn-primary rounded p-2 text-white text-center mt-2 searchedCity')
+            .addClass('btn btn-wide btn-block btn-primary rounded p-2 text-white text-center mt-2 searchedCity')
             .attr("data-city", recentSearches[j].city);
 
             $(recentsContainer).append(recentSearchEl);
