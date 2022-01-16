@@ -14,3 +14,5 @@ A weather dashboard featuring dynamically updated HTML and CSS. Search for curre
 https://felicitybrammer.github.io/weather-hub/
 
 ## Screenshot
+
+[!screenshot]('./screenshot.png)
