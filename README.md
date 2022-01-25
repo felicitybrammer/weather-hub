@@ -16,4 +16,4 @@ https://felicitybrammer.github.io/weather-hub/
 
 ## Screenshot
 
-[!Screenshot](./screenshot.png)
+[!Screenshot](./assets/screenshot.png)
