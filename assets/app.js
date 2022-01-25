@@ -2,7 +2,7 @@ const searchBtnEl = document.getElementById('search-btn');
 const currentContainer = document.getElementById('current-container');
 const recentsContainer = document.getElementById('recents');
 const currentDate = dayjs().format('MMMM D');
-
+const forecastContainer = document.getElementById('forecast-container');
 
 
 if(localStorage.getItem("searchHistory") == null){
@@ -103,9 +103,10 @@ const getForecast = function (city) {
         .then(response =>{
             if (response.ok) {
                 response.json().then(data => {
-                    for (let i = 1; i < 6; i+=1) {
+                   
                     
-                    let forecastContainer = document.getElementById('forecast-container');
+                  for (let i = 1; i < 6; i+=1) {
+
 
                     let icon = data.list[i].weather[0].icon;
                     let forecastIcon = `http://openweathermap.org/img/wn/${icon}@2x.png`;
@@ -212,9 +213,14 @@ searchBtnEl.addEventListener('click', event => {
 });
 
 
-$("#recents").on("click", (e) => {
-    const result = getCoords($(e.target).text()); 
+$(recentsContainer).on("click", (e) => {
+    console.log('click');
+    const result = $(e.target).text(); 
+    //console.log($(e.target).text())
     console.log(result) //this one returns undefined
+    forecastContainer.innerHTML = '';
+    console.log(forecastContainer)
+    getCoords(result);
 })
 
 loadSearchHistory();
