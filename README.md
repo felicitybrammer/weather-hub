@@ -16,4 +16,4 @@ https://felicitybrammer.github.io/weather-hub/
 
 ## Screenshot
 
-[!Screenshot](./assets/screenshot.png)
+![Screen Shot 2022-01-15 at 20 49 55](https://user-images.githubusercontent.com/39717428/151264315-359161a2-704d-469c-9ead-70f24290e6e9.png)
